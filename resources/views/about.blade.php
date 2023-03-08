@@ -4,7 +4,9 @@
      
     <!-- Page Header Start -->
   <x-page-header>
-    
+    <x-slot:name>
+        {{$name='About'}}
+    </x-slot:name>
 </x-page-header>
   <!-- Page Header End -->
     
