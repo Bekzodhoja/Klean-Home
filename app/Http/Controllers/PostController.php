@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,7 +14,19 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+
+
+
+        Post::destroy(4);
+    
+        $post=  Post::all();
+        dd($post);
+ 
+   
+        // $newPost->photo="my/photo.jpg";
+
+        return "successfully deleted";
+        // return view('posts.index');
     }
 
     /**
