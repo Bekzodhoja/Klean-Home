@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -15,18 +16,8 @@ class PostController extends Controller
     public function index()
     {
 
-
-
-        Post::destroy(4);
-    
-        $post=  Post::all();
-        dd($post);
- 
-   
-        // $newPost->photo="my/photo.jpg";
-
-        return "successfully deleted";
-        // return view('posts.index');
+        $posts= Post::all();
+         return view('posts.index')->with(['posts',$posts]);
     }
 
     /**
@@ -56,9 +47,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('posts.show')->with([
+            'post'=>$post,
+            'ret_posts'=>Post::latest()->get()->except($post->id)->take(5),
+
+    ]);
+        
     }
 
     /**
