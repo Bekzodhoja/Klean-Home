@@ -15,8 +15,14 @@
                 <div class="col-lg-8">
                     <div class="text-right">
                         <a class="btn btn-sm btn-outline-success" href="{{route('posts.edit',['post'=>$post->id])}}">Edit</a>
-                        <a class="btn btn-sm btn-danger" href="">Delete</a>
 
+                        <div class="mt-2">
+                        <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                        </form>
+                    </div>
                     </div>
                     <div class="mb-5">
                         <div class="d-flex mb-2">
