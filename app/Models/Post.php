@@ -10,4 +10,12 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected  $fillable=[
+        'title',
+        'short_content',
+        'content',
+        'photo'
+    ];
+    // protected $guarded = [];  
+
 }

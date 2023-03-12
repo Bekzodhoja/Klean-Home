@@ -13,6 +13,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
+                    <div class="text-right">
+                        <a class="btn btn-sm btn-outline-success" href="{{route('posts.edit',['post'=>$post->id])}}">Edit</a>
+                        <a class="btn btn-sm btn-danger" href="">Delete</a>
+
+                    </div>
                     <div class="mb-5">
                         <div class="d-flex mb-2">
                             <a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a>
@@ -25,7 +30,7 @@
                     </div>
 
                     <div class="mb-5">
-                        <img class="img-fluid rounded w-100 mb-4" src="/img/carousel-1.jpg" alt="Image">
+                        <img class="img-fluid rounded w-100 mb-4" src="{{asset('storage/'.$post->photo)}}" alt="Image">
                         <p>{{$post->content}}</p>
                       
                      
@@ -34,7 +39,7 @@
                     <div class="mb-5">
                         <h3 class="mb-4 section-title">3 Comments</h3>
                         <div class="media mb-4">
-                            <img src="/img/user.jpg" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
+                            <img src="{{asset('storage/'.$post->photo)}}" alt="Image" class="img-fluid rounded-circle mr-3 mt-1" style="width: 45px;">
                             <div class="media-body">
                                 <h6>John Doe <small><i>01 Jan 2045 at 12:00pm</i></small></h6>
                                 <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum clita, at tempor amet ipsum diam tempor sit.</p>
@@ -124,7 +129,7 @@
                         @foreach ($ret_posts as $post)
                             
                         <div class="d-flex align-items-center border-bottom mb-3 pb-3">
-                            <img class="img-fluid rounded" src="/img/blog-1.jpg" style="width: 80px; height: 80px; object-fit: cover;" alt="">
+                            <img class="img-fluid rounded" src="{{asset('storage/'.$post->photo)}}" style="width: 80px; height: 80px; object-fit: cover;" alt="">
                             <div class="d-flex flex-column pl-3">
                                 <a class="text-dark mb-2" href="">{{$post->title}}</a>
                                 <div class="d-flex">
