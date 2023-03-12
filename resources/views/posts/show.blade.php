@@ -17,7 +17,8 @@
                         <a class="btn btn-sm btn-outline-success" href="{{route('posts.edit',['post'=>$post->id])}}">Edit</a>
 
                         <div class="mt-2">
-                        <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="post">
+                        <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="post"
+                           onclick="return confirm('Are you sure do it');" >
                         @method('DELETE')
                         @csrf
                         <input type="submit" class="btn btn-sm btn-danger" value="Delete">
