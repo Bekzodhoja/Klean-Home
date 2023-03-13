@@ -22,5 +22,6 @@ class UserSeeder extends Seeder
             "email"=>'b@gmail.com',
             "password"=>Hash::make('secret')
         ]);
+    
     }
 }
