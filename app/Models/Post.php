@@ -15,14 +15,14 @@ class Post extends Model
         'content',
         'photo'
     ];
-    // protected $guarded = [];  
+    // protected $guarded = [];
 
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

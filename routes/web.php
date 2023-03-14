@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -23,16 +24,9 @@ Route::get('/project',[PageController::class,'project'])->name('project');
 Route::get('/contact',[PageController::class,'contact'])->name('contact');
 
 
-Route::resource('posts',PostController::class);
+Route::resources([
+"posts"=>PostController::class,
+"comments"=>CommentController::class,
+"users"=>UserController::class,
+]);
 
-
-
-
-
-
-
-
-// Route::get('user', [UserController::class, 'index']);
-// Route::get('main/{id?}', [UserController::class, 'show']);
-// Route::get('create', [UserController::class, 'create']);
-// Route::post('/user-create', [UserController::class, 'store']);
