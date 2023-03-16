@@ -1,14 +1,14 @@
 <x-layouts.main>
 
     <x-page-header>
-    
+
         <x-slot:name>
             {{$name='Posts'}}
         </x-slot:name>
-    
+
     </x-page-header>
-    
-    
+
+
         <!-- Blog Start -->
         <div class="container-fluid py-5">
             <div class="container">
@@ -37,6 +37,10 @@
                             <span class="text-primary px-2">|</span>
                             <a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a>
                         </div>
+                        <div class="d-flex mb-2">
+                            <span class="text-danger "> Category:  </span>
+                            <a class="text-success text-uppercase font-weight-medium">{{ $post->category->name }}</a>
+                        </div>
                         <h5 class="font-weight-medium mb-2">{{$post->title}}</h5>
                         <p class="mb-4">{{$post->short_content}}</p>
                         <a class="btn btn-sm btn-primary py-2" href="{{route('posts.show',['post'=>$post->id])}}">Read More</a>
@@ -45,8 +49,8 @@
 
 
 
-                 
-                 
+
+
                 </div>
             </div>
         </div>
@@ -55,5 +59,5 @@
             {{$posts->links()}}
 
         </div>
-    
+
     </x-layouts.main>

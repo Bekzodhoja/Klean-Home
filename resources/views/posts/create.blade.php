@@ -36,8 +36,8 @@
                                 @enderror
                             </div>
                             <div ontrol-group>
-                                <select class="form-control p-4" name="category_id">
-                                    <option value="">Categories</option>
+                                <select class="h-25 w-100 border border-2 p-4 rounded-pill" name="category_id" >
+                                    <option class="h-50" value="">Categories    </option>
                                     @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
 

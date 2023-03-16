@@ -33,6 +33,10 @@
                             <span class="text-primary px-2">|</span>
                             <a class="text-secondary text-uppercase font-weight-medium" href="">{{$post->created_at}}</a>
                         </div>
+                        <div class="d-flex mb-2">
+                            <span class="text-danger "> Category:  </span>
+                            <a class="text-success text-uppercase font-weight-medium">{{ $post->category->name }}</a>
+                        </div>
                         <h1 class="section-title mb-3">{{$post->title}}</h1>
                     </div>
 

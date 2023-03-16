@@ -39,6 +39,8 @@ class PostController extends Controller
         }
 
         $post = Post::create([
+            'user_id'=>1,
+            'category_id'=>$request->category_id,
             'title'=>$request->title,
             'short_content'=>$request->short_content,
             'content'=>$request->content,
