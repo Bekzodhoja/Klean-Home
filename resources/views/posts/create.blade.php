@@ -36,10 +36,19 @@
                                 @enderror
                             </div>
                             <div ontrol-group>
-                                <select class="h-25 w-100 border border-2 p-4 rounded-pill" name="category_id" >
+                                <select class="h-25 w-100 border border-2 p-2 rounded-pill"  name="category_id" >
                                     <option class="h-50" value="">Categories    </option>
                                     @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
+
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div ontrol-group>
+                                <select class="h-25 w-100 form-select border border-2  mt-2 rounded-2" aria-label="size 3 select example" multiple name="tags[]" >
+                                    @foreach ($tags as $tag)
+                                    <option class="ml-2" value="{{ $tag->id }}">{{ $tag->name }}</option>
 
                                     @endforeach
                                 </select>
