@@ -16,6 +16,9 @@
         </div>
 
         @auth
+        <div>
+            <h5 class="p-4">{{ auth()->user()->name }}</h5>
+        </div>
         <a href="{{route('posts.create')}}" class="btn btn-primary mr-3 d-none d-lg-block">Create Post</a>
 
         <form method="POST" action="{{ route('logout') }}">

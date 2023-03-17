@@ -12,7 +12,7 @@ public function store(Request $request)
     $comment= Comment::create([
         'body'=>$request->body,
         'post_id'=>$request->post_id,
-        'user_id'=>1,
+        'user_id'=>auth()->id(),
 
     ]);
 

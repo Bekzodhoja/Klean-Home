@@ -12,8 +12,12 @@
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row">
+
+
                 <div class="col-lg-8">
+
                     <div class="text-right">
+                        @auth
                         <a class="btn btn-sm btn-outline-success"
                             href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit</a>
 
@@ -25,7 +29,11 @@
                                 <input type="submit" class="btn btn-sm btn-danger" value="Delete">
                             </form>
                         </div>
+                        @endauth
+
                     </div>
+
+
                     <div class="mb-5">
                         <div class="d-flex mb-2">
                             @foreach ($post->tags as $tag)
@@ -73,20 +81,7 @@
 
                     <div class="bg-light rounded p-5">
                         <h3 class="mb-4 section-title">Leave a comment</h3>
-                        {{-- <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="name">Name *</label>
-                                    <input type="text" class="form-control" id="name">
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="email">Email *</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="website">Website</label>
-                                <input type="url" class="form-control" id="website">
-                            </div> --}}
+                       @auth
 
                         <form action="{{ route('comments.store') }}" method="POST">
                             @csrf
@@ -100,6 +95,15 @@
                                 <input type="submit" value="Leave Comment" class="btn btn-primary">
                             </div>
                         </form>
+
+                        @else
+                        <div>
+                            Login to leave a comment
+                            <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
+                        </div>
+                        @endauth
+
+
                     </div>
                 </div>
 
@@ -108,7 +112,7 @@
                 <div class="col-lg-4 mt-5 mt-lg-0">
                     <div class="d-flex flex-column text-center bg-secondary rounded mb-5 py-5 px-4">
                         <img src="/img/user.jpg" class="img-fluid rounded-circle mx-auto mb-3" style="width: 100px;">
-                        <h3 class="text-white mb-3">John Doe</h3>
+                        <h3 class="text-white mb-3">{{ $post->user->name }}</h3>
                         <p class="text-white m-0">Conset elitr erat vero dolor ipsum et diam, eos dolor lorem ipsum,
                             ipsum
                             ipsum sit no ut est. Guber ea ipsum erat kasd amet est elitr ea sit.</p>
