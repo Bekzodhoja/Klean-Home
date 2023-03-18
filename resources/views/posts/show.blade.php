@@ -18,6 +18,9 @@
 
                     <div class="text-right">
                         @auth
+                        @canany(['update', 'delete'], $post)
+
+
                         <a class="btn btn-sm btn-outline-success"
                             href="{{ route('posts.edit', ['post' => $post->id]) }}">Edit</a>
 
@@ -29,6 +32,8 @@
                                 <input type="submit" class="btn btn-sm btn-danger" value="Delete">
                             </form>
                         </div>
+                        @endcanany
+
                         @endauth
 
                     </div>

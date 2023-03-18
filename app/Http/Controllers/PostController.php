@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
-use App\Models\Category;
-use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Auth\Events\Validated;
+use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Events\Validated;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -17,6 +18,7 @@ class PostController extends Controller
     public function __construct()
     {
        $this->middleware('auth')->except(['show','index']);
+       $this->authorizeResource(Post::class,'post');
     }
 
     public function index()
@@ -78,12 +80,15 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+
+
         return view('posts.edit')->with(["post"=>$post]);
     }
 
 
     public function update(Request $request, Post $post)
     {
+
         if($request->hasFile('photo')){
 
             if(isset($post->photo)){
@@ -106,6 +111,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+
         if(isset($post->photo)){
             Storage::delete($post->photo);
         }
