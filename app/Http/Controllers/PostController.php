@@ -14,7 +14,9 @@ use App\Http\Requests\StorePostRequest;
 use App\Jobs\ChangePost;
 use App\Jobs\UploadBigFile;
 use App\Mail\PostCreated;
+use App\Notifications\PostCreated as NotificationsPostCreated;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -69,7 +71,7 @@ class PostController extends Controller
 
         PostCreat::dispatch($post);
         Mail::to($request->user())->later(now()->addSecond(15),(new PostCreated($post))->onQueue('sending-mails'));
-
+        Notification::send(auth()->user(), new NotificationsPostCreated($post));
         return redirect()->route('posts.index');
 
     }

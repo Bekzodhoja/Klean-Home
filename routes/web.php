@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\NotificationControllaer;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -40,5 +41,6 @@ Route::resources([
 "posts"=>PostController::class,
 "comments"=>CommentController::class,
 "users"=>UserController::class,
+"notification"=>NotificationControllaer::class,
 ]);
 
