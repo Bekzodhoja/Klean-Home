@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Events\Validated;
 use App\Http\Requests\StorePostRequest;
+use App\Jobs\ChangePost;
+use App\Jobs\UploadBigFile;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -63,7 +65,7 @@ class PostController extends Controller
             }
         }
         PostCreat::dispatch($post);
-        return redirect()->route('posts.index');
+        ChangePost::dispatch($post);
     }
 
 
