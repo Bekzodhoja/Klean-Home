@@ -13,6 +13,8 @@ use Illuminate\Auth\Events\Validated;
 use App\Http\Requests\StorePostRequest;
 use App\Jobs\ChangePost;
 use App\Jobs\UploadBigFile;
+use App\Mail\PostCreated;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -64,8 +66,12 @@ class PostController extends Controller
                 $post->tags()->attach($tag);
             }
         }
+
         PostCreat::dispatch($post);
-        ChangePost::dispatch($post);
+        Mail::to($request->user())->later(now()->addSecond(15),(new PostCreated($post))->onQueue('sending-mails'));
+
+        return redirect()->route('posts.index');
+
     }
 
 
