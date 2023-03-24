@@ -12,6 +12,14 @@
         <!-- Blog Start -->
         <div class="container-fluid py-5">
             <div class="container">
+
+                @if (session('message'))
+                <div class="alert alert-success">
+                    <button class="close" type="button" data-dismiss="alert">X</button>
+                    {{ session('message') }}
+                </div>
+
+                @endif
                 <div class="row align-items-end mb-4">
                     <div class="col-lg-6">
                         <h6 class="text-secondary font-weight-semi-bold text-uppercase mb-3">Latest Blog</h6>

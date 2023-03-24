@@ -33,7 +33,7 @@ class PostController extends Controller
     {
 
 
-         $posts= Post::latest()->paginate(9);
+         $posts= Post::latest()->paginate(6);
 
 
 
@@ -76,7 +76,7 @@ class PostController extends Controller
         PostCreat::dispatch($post);
         Mail::to($request->user())->later(now()->addSecond(15),(new PostCreated($post))->onQueue('sending-mails'));
         Notification::send(auth()->user(), new NotificationsPostCreated($post));
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('message','Gud Job');
 
     }
 
