@@ -31,15 +31,11 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Cache::flush();
 
 
-        // $posts= Post::latest()->paginate(9);
-        // $posts=Post::latest()->get();
+         $posts= Post::latest()->paginate(9);
 
-        $posts = Cache::remember('posts', now()->addSeconds(30) , function () {
-           return Post::latest()->get();
-});
+
 
          return view('posts.index',compact('posts'));
     }

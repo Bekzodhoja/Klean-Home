@@ -59,7 +59,7 @@
         </div>
         <!-- Blog End -->
         <div class="row d-flex justify-content-center">
-            {{-- {{$posts->links()}} --}}
+            {{$posts->links()}}
 
         </div>
 
