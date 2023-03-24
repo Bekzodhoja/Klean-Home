@@ -11,7 +11,9 @@ use App\Mail\PostCreated;
 use App\Jobs\UploadBigFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Cache;
@@ -19,7 +21,6 @@ use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\PostCreated as NotificationsPostCreated;
-use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -32,6 +33,10 @@ class PostController extends Controller
 
     public function index()
     {
+
+        $response = Http::get('http://example.com');
+        dd($response->headers());
+
 
         $message="It is Gegged now";
         Log::emergency($message);
