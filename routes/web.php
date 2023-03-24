@@ -35,6 +35,10 @@ Route::get('/register',[AuthController::class,'register'])->name('register');
 Route::post('/register',[AuthController::class,'register_store'])->name('register.store');
 
 
+Route::middleware('auth')->group(function(){
+    Route::get('notification/{notification}/read',[NotificationControllaer::class,'read'])->name('notification.read');
+
+});
 
 
 Route::resources([

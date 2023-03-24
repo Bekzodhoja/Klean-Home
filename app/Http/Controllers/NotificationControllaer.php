@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationControllaer extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth'); 
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,15 @@ class NotificationControllaer extends Controller
      */
     public function index()
     {
-        //
+        return view('notification.index')->with([
+            'notifications'=>auth()->user()->notifications()->paginate(10),
+        ]);
+    }
+
+    public function read(DatabaseNotification $notification)
+    {
+        $notification->markAsRead();
+        return redirect()->back();
     }
 
     /**

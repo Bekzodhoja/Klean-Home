@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\PostCreat;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Jobs\ChangePost;
 use App\Models\Category;
+use App\Events\PostCreat;
+use App\Mail\PostCreated;
+use App\Jobs\UploadBigFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Auth\Events\Validated;
-use App\Http\Requests\StorePostRequest;
-use App\Jobs\ChangePost;
-use App\Jobs\UploadBigFile;
-use App\Mail\PostCreated;
-use App\Notifications\PostCreated as NotificationsPostCreated;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\PostCreated as NotificationsPostCreated;
 
 class PostController extends Controller
 {
@@ -30,8 +31,15 @@ class PostController extends Controller
 
     public function index()
     {
+        $posts = Cache::flush();
 
-        $posts= Post::latest()->paginate(9);
+
+        // $posts= Post::latest()->paginate(9);
+        // $posts=Post::latest()->get();
+
+        $posts = Cache::remember('posts', now()->addSeconds(30) , function () {
+           return Post::latest()->get();
+});
 
          return view('posts.index',compact('posts'));
     }

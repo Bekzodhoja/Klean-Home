@@ -21,31 +21,31 @@
 
 
 
-                    @foreach ($posts as $post)
+                    @foreach ($notifications as $notification)
 
-                    <div class=" mb-5">
+                    <div class=" rounded mb-3 border p-4">
                         <div class="position-relative mb-4">
-                            <img class="img-fluid rounded w-100" src="{{asset   ('storage/'.$post->photo)}}" alt="">
+                            @if ($notification->read_at==null)
+
                             <div class="blog-date">
-                                <h4 class="font-weight-bold mb-n1">01</h4>
-                                <small class="text-white text-uppercase">Jan</small>
+                                    
+                                
+                                <h4 class="font-weight-bold mb-n1">New</h4>
                             </div>
-                        </div>
-                        <div class="d-flex mb-2">
-                            @foreach ($post->tags as $tag)
-
-                            <a class="text-secondary text-uppercase font-weight-medium" href="">{{ $tag->name }}</a>
-                            <span class="text-primary px-2">|</span>
-                            @endforeach
+                            @endif
 
                         </div>
+
                         <div class="d-flex mb-2">
                             <span class="text-danger "> Category:  </span>
-                            <a class="text-success text-uppercase font-weight-medium">{{ $post->category->name }}</a>
-                        </div>  
-                        <h5 class="font-weight-medium mb-2">{{$post->title}}</h5>
-                        <p class="mb-4">{{$post->short_content}}</p>
-                        <a class="btn btn-sm btn-primary py-2" href="{{route('posts.show',['post'=>$post->id])}}">Read More</a>
+                            <a class="text-success text-uppercase font-weight-medium">{{ $notification->data['created_at']}}</a>
+                        </div>
+                        <h5 class="font-weight-medium mb-2">{{ $notification->data['title']}}</h5>
+                        <p class="mb-4">{{$notification->data['id']}}</p>
+                        @if ($notification->read_at==null)
+                        <a class="btn btn-sm btn-primary py-2" href="{{route('notification.read',['notification'=>$notification->id])}}">Read More</a>
+
+                        @endif
                 </div>
                     @endforeach
 
@@ -57,7 +57,7 @@
         </div>
         <!-- Blog End -->
         <div class="row d-flex justify-content-center">
-            {{$posts->links()}}
+            {{$notifications->links()}}
 
         </div>
 
