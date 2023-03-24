@@ -34,8 +34,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $response = Http::get('http://example.com');
-        dd($response->headers());
+      
 
 
         $message="It is Gegged now";
