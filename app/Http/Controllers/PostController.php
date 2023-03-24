@@ -19,6 +19,7 @@ use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\PostCreated as NotificationsPostCreated;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -32,6 +33,16 @@ class PostController extends Controller
     public function index()
     {
 
+        $message="It is Gegged now";
+        Log::emergency($message);
+        Log::alert($message);
+        Log::critical($message);
+        Log::error($message);
+        Log::warning($message);
+        Log::notice($message);
+        Log::info($message);
+        Log::debug($message);
+        Log::info('Showing the user profile for user: '. 4);
 
          $posts= Post::latest()->paginate(6);
 
