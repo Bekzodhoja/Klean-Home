@@ -47,4 +47,3 @@ Route::resources([
 "users"=>UserController::class,
 "notification"=>NotificationControllaer::class,
 ]);
-

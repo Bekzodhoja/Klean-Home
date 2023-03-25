@@ -27,8 +27,8 @@ class PostController extends Controller
 
     public function __construct()
     {
-       $this->middleware('auth')->except(['show','index']);
-       $this->authorizeResource(Post::class,'post');
+    //    $this->middleware('auth')->except(['show','index']);
+    //    $this->authorizeResource(Post::class,'post');
     }
 
     public function index()
@@ -37,22 +37,23 @@ class PostController extends Controller
       
 
 
-        $message="It is Gegged now";
-        Log::emergency($message);
-        Log::alert($message);
-        Log::critical($message);
-        Log::error($message);
-        Log::warning($message);
-        Log::notice($message);
-        Log::info($message);
-        Log::debug($message);
-        Log::info('Showing the user profile for user: '. 4);
+        // $message="It is Gegged now";
+        // Log::emergency($message);
+        // Log::alert($message);
+        // Log::critical($message);
+        // Log::error($message);
+        // Log::warning($message);
+        // Log::notice($message);
+        // Log::info($message);
+        // Log::debug($message);
+        // Log::info('Showing the user profile for user: '. 4);
 
-         $posts= Post::latest()->paginate(6);
+        //  $posts= Post::latest()->paginate(6);
 
+        //  return view('posts.index',compact('posts'));
 
+        // return Post::limit(1)->get();
 
-         return view('posts.index',compact('posts'));
     }
 
 
