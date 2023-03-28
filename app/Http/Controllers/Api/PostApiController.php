@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\PostsResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ class PostApiController extends Controller
      */
     public function index()
     {
-        return Post::limit(10)->get();
+        // return Post::limit(10)->get();
+        return PostsResource::collection(Post::limit(10)->get());
     }
 
     /**
@@ -60,7 +62,7 @@ class PostApiController extends Controller
      */
     public function show(Post $post)
     {
-        return Post::find(5);
+       return new PostsResource($post);
     }
 
     /**
@@ -81,8 +83,11 @@ class PostApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+    return "ererer";
+        
     }
 }
